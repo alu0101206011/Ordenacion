@@ -1,4 +1,4 @@
-# Ordenacion
+# Ordenación
 Algoritmos y Estructuras de Datos Avanzadas.
 
 Curso 2020-2021.
