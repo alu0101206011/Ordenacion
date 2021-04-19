@@ -44,6 +44,16 @@ Vector<Clave>& Vector<Clave>::operator=(const Vector<Clave>& kNewVector) {
 
 
 template <class Clave> 
+bool Vector<Clave>::operator==(const Vector<Clave>& kNewVector) {
+  if (kNewVector.get_sz() != sz_) return false;
+  for (unsigned i = 0; i < sz_; i++)
+    if (vector_[i] != kNewVector.get_vector()[i])
+      return false;
+  return true;
+}
+
+
+template <class Clave> 
 Clave& Vector<Clave>::operator[](const unsigned& i) {
   if (i < 0 || i >= sz_) {
     std::cout << "Vector fuera de rango.\n";
@@ -100,4 +110,3 @@ void Vector<Clave>::fill_number(int number) {
 
 // Declaración explicita de instanciación de template class
 template class Vector<int>;
-template class Vector<Vector<int>>;

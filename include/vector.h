@@ -20,6 +20,7 @@ class Vector {
   void swap(unsigned, unsigned);
 
   Vector<Clave>& operator=(const Vector<Clave>&);
+  bool operator==(const Vector<Clave>&);
   Clave& operator[](const unsigned&);
   Clave operator[](const unsigned&) const;
 

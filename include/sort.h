@@ -23,6 +23,7 @@ class BaseSort {
   Vector<Clave> get_vector(void) const { return vector_; }
 
   virtual void Sort(void) = 0;
+  //virtual void SortTraza(void) = 0;
 };
 
 
@@ -76,12 +77,15 @@ class QuickSort : public BaseSort<Clave> {
   void QSort(Vector<Clave>& sec, int ini, int fin) {
     int i = ini, f = fin;
     Clave p = sec[(i + f) / 2];
+    trazaq_.introduce_traza(sec, p, i, f, ini, fin);
     while (i <= f) {
-      trazaq_.set_pivote_info(sec, p, i, f, ini, fin);
       while (sec[i] < p) i++;
       while (sec[f] > p) f--;
       if (i <= f) {
-        this->vector_.swap(i,f);
+        if (i != f) {
+          this->vector_.swap(i,f);
+          trazaq_.modifica_traza(sec, p, i, f, ini, fin);
+        }
         i++;
         f--;
       }
@@ -89,5 +93,41 @@ class QuickSort : public BaseSort<Clave> {
     if (ini < f) QSort(sec, ini, f);
     if (i < fin) QSort(sec, i, fin);
   }
-
 };
+
+
+template<class Clave>
+class ShellSort : public BaseSort<Clave> {
+  private:
+    float reduccion_;
+    TrazaShellSort trazaSS_;
+  public:
+    ShellSort(const Vector<Clave>& kVector, float reduccion = 0.5): BaseSort<Clave>(kVector), reduccion_(reduccion), trazaSS_(kVector.get_sz()) {
+      this->traza_ = &trazaSS_;
+    }
+    ShellSort(const unsigned& kSize, float reduccion = 0.5) : BaseSort<Clave>(kSize), reduccion_(reduccion) {
+      this->traza_ = &trazaSS_;
+    }
+    
+    void Sort(void) {
+      int delta = /* this->vector_.get_sz(); */ 10;
+      while (delta > 1) {
+        delta *= reduccion_;
+        DeltaSort(delta, this->vector_, this->vector_.get_sz());
+      }
+    }
+
+    void DeltaSort(int delta, Vector<Clave>& vector, int tam) {
+      for (int i = delta; i < tam; i++) {
+        Clave x = vector[i];
+        int j = i;
+        while ((j >= delta) && (x < vector[j - delta])) {
+          trazaSS_.RecogerTraza(vector, delta, j, j - delta);
+          vector[j] = vector[j - delta];
+          j = j - delta;
+        }
+        vector[j] = x;
+      }
+    }
+    
+}; 
