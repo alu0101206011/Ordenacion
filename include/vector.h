@@ -32,7 +32,7 @@ class Vector {
       os << "-";
     }
     for (unsigned i = 1; i < kVector.get_sz(); i++) {
-      os << " | ";
+      os << " ";
       if (kVector[i] != 0) {
         os << kVector[i];
       } else {
