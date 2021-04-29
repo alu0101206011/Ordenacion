@@ -2,7 +2,6 @@
 #include <random>
 
 #include "../include/vector.h"
-#include "../include/traza.h"
 
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
@@ -18,17 +17,13 @@ template<class Clave>
 class BaseSort {
  protected:
   Vector<Clave> vector_;
-  Traza* traza_;
  public:
   BaseSort(const Vector<Clave>& kVector) : vector_(kVector) {}
   BaseSort(const unsigned& kSize) : vector_(kSize) {
-    srand(time(NULL));
+/*     srand(time(NULL));
     for (unsigned i = 0; i < vector_.get_sz(); i++)
-      vector_[i] = (rand() % 1000) + 1;
+      vector_[i] = (rand() % 1000) + 1; */
   }
-
-  Traza* get_traza(void) { return traza_; }
-  Traza* get_traza(void) const { return traza_; }
 
   Vector<Clave> get_vector(void) const { return vector_; }
 
@@ -159,7 +154,7 @@ class QuickSort : public BaseSort<Clave> {
     std::cout << RESET << "\n";
   }
 
-  void muestra_traza_pivote(Vector<Clave> sec, int pivote, int ini, int fin, int i, int f) {
+  void muestra_traza_pivote(Vector<Clave> sec, Clave pivote, int ini, int fin, int i, int f) {
     std::cout <<"\nPivote: " << pivote << "\tini: " << ini << "\tfin: " << fin << "\n";
     muestra_traza(sec, ini, fin, i, f);
   }

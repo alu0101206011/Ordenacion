@@ -14,6 +14,7 @@
 
 #include <iostream>
 
+#include "../include/clave.h"
 #include "../include/sort.h"
 #include "../include/funcionmenu.h"
 
@@ -21,7 +22,7 @@
 int main(int argc, char *argv[]) {
   Usage(argc, argv);
   cabecera();
-  BaseSort<int>* metodo_sort = elegir_contenedor();
+  BaseSort<Clave>* metodo_sort = elegir_contenedor(1);
   visualizar_traza(metodo_sort);
   return 0;
 }

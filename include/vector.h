@@ -26,22 +26,12 @@ class Vector {
 
 
   friend std::ostream& operator<<(std::ostream& os, const Vector<Clave>& kVector) {
-    if (kVector[0] != 0) {
+    if (kVector.get_sz() > 0) 
       os << kVector[0];
-    } else {
-      os << "-";
-    }
     for (unsigned i = 1; i < kVector.get_sz(); i++) {
       os << " ";
-      if (kVector[i] != 0) {
-        os << kVector[i];
-      } else {
-        os << "-";
-      }
+      os << kVector[i];
     }
     return os;
   }
-
- private:
-  void fill_number(int);
 };

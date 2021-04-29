@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "../include/clave.h"
 #include "../include/vector.h"
 
 template <class Clave>
@@ -11,7 +12,6 @@ Vector<Clave>::Vector(void): sz_(0) {
 template <class Clave>
 Vector<Clave>::Vector(unsigned sz): sz_(sz) {
   vector_ = new Clave[sz_];
-  fill_number(0);
 }
 
 
@@ -101,12 +101,6 @@ void Vector<Clave>::swap(unsigned x, unsigned y) {
 }
 
 
-template <class Clave>
-void Vector<Clave>::fill_number(int number) {
-  for (unsigned i = 0; i < sz_; i++)
-    vector_[i] = number;
-}
-
-
 // Declaración explicita de instanciación de template class
 template class Vector<int>;
+template class Vector<Clave>;

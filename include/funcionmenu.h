@@ -12,3 +12,8 @@ BaseSort<int>* elegir_ordenacion(unsigned size);
 BaseSort<int>* elegir_ordenacion(Vector<int>);
 
 void visualizar_traza(BaseSort<int>* metodo_traza);
+
+//###############################################
+BaseSort<Clave>* elegir_contenedor(int);
+BaseSort<Clave>* elegir_ordenacion(Vector<Clave> vector, int);
+void visualizar_traza(BaseSort<Clave>* metodo_traza);
